@@ -1,0 +1,14 @@
+{
+    "name": "refine-intercom",
+    "version": "0.1",
+    "description": "refine intercom UI",
+    "permissions": ["activeTab", "declarativeContent", "storage"],
+    "content_scripts": [
+      {
+        "matches": ["https://app.intercom.io/*/conversation/*", "https://app.intercom.io/*/conversations/*"],
+        "js": ["ellipsisEmailHistory.js", "extendConversationWindow.js"],
+        "run_at": "document_end"
+      }
+    ],
+    "manifest_version": 2
+}
