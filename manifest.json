@@ -5,8 +5,15 @@
     "permissions": ["activeTab", "declarativeContent", "storage"],
     "content_scripts": [
       {
-        "matches": ["https://app.intercom.io/*/conversation/*", "https://app.intercom.io/*/conversations/*"],
-        "js": ["ellipsisEmailHistory.js", "extendConversationWindow.js"],
+        "matches": [
+          "https://app.intercom.io/*/conversation/*",
+          "https://app.intercom.io/*/conversations/*"
+        ],
+        "js": [
+          "ellipsisEmailHistory.js",
+          "essentialConversationTagsChecker.js",
+          "extendConversationWindow.js"
+        ],
         "run_at": "document_end"
       }
     ],
