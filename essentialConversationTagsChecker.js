@@ -1,5 +1,8 @@
 // TODO: autoload setted EssentialTags
-const kEssentialTags = ["foo", "bar"]
+var essentialTags;
+chrome.storage.sync.get('essential_tags', function(data) {
+  essentialTags = data.essential_tags;
+});
 
 // generate missing tag window
 let missing_tag_window = document.createElement('div');
@@ -43,7 +46,7 @@ var extractFirstConversationTags = function() {
 
 var missingEssentialTags = function(tags) {
   // cal missing tags
-  var missing_tags = kEssentialTags.reduce( function(acc, essential_tag, _, _) {
+  var missing_tags = essentialTags.reduce( function(acc, essential_tag, _, _) {
     var is_exists = tags.some( val => val.match(new RegExp(`^${essential_tag}`, "g")) )
 
     // whne missing essential tag, append missing_tags

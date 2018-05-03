@@ -3,6 +3,7 @@
     "version": "0.1",
     "description": "refine intercom UI",
     "permissions": ["activeTab", "declarativeContent", "storage"],
+    "options_page": "options.html",
     "content_scripts": [
       {
         "matches": [
