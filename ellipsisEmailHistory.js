@@ -1,4 +1,9 @@
-const kMailStartPhrases = ["-----Original Message-----", "&gt; &gt;", "<b>From:</b>"]
+const kMailHistoryStartPhrases = [
+  { type: "string", value: "-----Original Message-----" },
+  { type: "string", value: "&gt; &gt;"},
+  { type: "string", value: "<b>From:</b>"},
+  { type: "regexp", value: /[0-9]+年[0-9]+月[0-9]+日.[0-9]+:[0-9]+.*から/g }
+]
 
 var ellipsisEmailHistory = function() {
   var conversations = document.getElementsByClassName('conversation__text');
@@ -14,11 +19,13 @@ var ellipsisEmailHistory = function() {
     }
 
     // find startline and prepend details tag
-    var idx = kMailStartPhrases.reduce(function (acc, val, _, _) {
-        return acc == -1 ? replaced_html.indexOf(val) : acc
-      },
-      -1
-    )
+    var idx = kMailHistoryStartPhrases.reduce(function (acc, val, _, _) {
+      if (acc != -1) {
+        return acc
+      }
+
+      return (val.type == "regexp") ? replaced_html.search(val.value) : replaced_html.indexOf(val.value)
+    }, -1 )
 
     // it doesn't have email history, skip loop
     if (idx == -1) {
