@@ -1,4 +1,4 @@
-const kMailStartPhrases = ["-----Original Message-----", "&gt; &gt;"]
+const kMailStartPhrases = ["-----Original Message-----", "&gt; &gt;", "<b>From:</b>"]
 
 var ellipsisEmailHistory = function() {
   var conversations = document.getElementsByClassName('conversation__text');
